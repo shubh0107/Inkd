@@ -1,0 +1,37 @@
+/*
+#landing-header {
+    text-align: center;
+    z-index: 1;
+    padding-top: 40px;
+    position: relative;
+}*/
+
+.ui.text.container {
+    max-width: 900px!important;
+}
+
+
+.masthead .ui.menu .ui.button{
+    margin-left: 0.5em;
+}
+
+.masthead h1.ui.header{
+    margin-top: 3em;
+    font-size: 4em;
+    font-weight: normal;
+
+}
+
+.masthead.segment{
+    min-height: 750px;
+}
+
+@media only screen and (max-width: 700px) {
+    .masthead.segment {
+        min-height: 350px;
+    }
+}
+
+#heading {
+
+}

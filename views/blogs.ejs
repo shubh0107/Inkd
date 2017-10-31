@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/blogs.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="categories">
+        <div class="ui huge secondary inverted pointing menu">
+            <% topics.forEach(function (title) { %>
+                <a class="ui inverted green button"> <%= title%></a>
+            <% })%>
+        </div>
+    </div>
+
+    <div class="allTopicsContainer">
+        <header class="category-title">
+            <div class="category-content">
+					<span class="borderBottom">
+						<h2 class="ui header"><a href="#">Technology</a></h2>
+					</span>
+                <a class="category-more" href="#">
+                    <span class="textUppercase">more</span>
+                </a>
+            </div>
+        </header>
+        <div class="ui three column grid category-content">
+            <div class="column category-blog">
+                <div class="ui">
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="header blog-title">Cute Dog</div>
+                            <div class="meta">
+                                <span class="right floated time">2 days ago</span>
+                                <span class="category">Animals</span>
+                            </div>
+                            <div class="description">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea eaque, nihil veritatis illum omnis doloremque ratione quidem totam asperiores aliquam atque cumque. Quo quidem hic velit provident ipsum enim, optio.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae deleniti, ratione esse ullam adipisci quasi eius in cumque explicabo suscipit, ex, commodi, praesentium consequuntur possimus expedita blanditiis repellendus. A,ducimus!</p>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <div class="right floated author">
+                                <img class="ui avatar image" src="Assets/if_9_2694135.svg"> Matt
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column category-blog">
+                <div class="ui">
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="header blog-title">Cute Dog</div>
+                            <div class="meta">
+                                <span class="right floated time">2 days ago</span>
+                                <span class="category">Animals</span>
+                            </div>
+                            <div class="description">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis voluptas sequi perspiciatis omnis totam quidem pariatur nihil a recusandae quod rerum accusantium, veritatis aperiam molestias consequuntur, esse sit et eos.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quod itaque animi veritatis voluptatum nemo laboriosam labore debitis, voluptatibus explicabo deleniti quam ducimus dolores ratione est omnis quos reiciendis assumenda.</p>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <div class="right floated author">
+                                <img class="ui avatar image" src="Assets/if_9_2694135.svg"> Matt
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column category-blog">
+                <div class="ui">
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="header blog-title">Cute Dog</div>
+                            <div class="meta">
+                                <span class="right floated time">2 days ago</span>
+                                <span class="category">Animals</span>
+                            </div>
+                            <div class="description">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea eaque, nihil veritatis illum omnis doloremque ratione quidem totam asperiores aliquam atque cumque. Quo quidem hic velit provident ipsum enim, optio.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae deleniti, ratione esse ullam adipisci quasi eius in cumque explicabo suscipit, ex, commodi, praesentium consequuntur possimus expedita blanditiis repellendus. A, ducimus!</p>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <div class="right floated author">
+                                <img class="ui avatar image" src="Assets/if_9_2694135.svg"> Matt
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
