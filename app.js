@@ -5,23 +5,52 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
+var passport = require("passport");
+var User = require("./models/user");
+var LocalStrategy = require("passport-local");
+
+var app = express();
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var blogs = require('./routes/blogs');
 
-var app = express();
+
+
 
 
 //connect to mongoose
 
 mongoose.connect('mongodb://localhost/inkd',{
     useMongoClient:true
+},function (err, db) {
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log("DB connected successfully");
+    }
 });
+
+// Passport Configuration
+app.use(require("express-session")({
+   secret: "Agam and Shubham",
+   resave: false,
+   saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -29,13 +58,27 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+});
+
+
+
+
 app.use('/', index);
 app.use('/users', users);
-app.use('/blogs', blogs)
+app.use('/blogs', blogs);
+
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -55,4 +98,11 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+
+
 module.exports = app;
+
+/*
+app.listen(process.env.PORT, process.env.IP, function(){
+    console.log("Inkd has started on port no:"+ process.env.PORT);
+});*/
