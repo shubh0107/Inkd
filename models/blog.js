@@ -8,7 +8,7 @@ var blogSchema = new mongoose.Schema({
     createdAt: Date,
     author: {
         id: {
-            type: mongoose.Schema.type.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         },
         username: String
@@ -16,4 +16,4 @@ var blogSchema = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model("Blogs", blogSchema);
+module.exports = mongoose.model("Blog", blogSchema);

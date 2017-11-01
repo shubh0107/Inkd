@@ -4,7 +4,7 @@
     <div class="row">
         <h1 style="text-align: center">Create a new blog</h1>
         <div style="width:30%; margin: 25px auto;">
-            <div class="ui form" action="#" method="POST">
+            <form class="ui form" action="/blogs" method="POST">
                 <div class="field">
                     <label>Title</label>
                     <input type="text" name="title" placeholder="Title">
@@ -15,11 +15,11 @@
                 </div>
                 <div class="field">
                     <label>Content</label>
-                    <textarea></textarea>
+                    <textarea name="content" placeholder="Enter you content here..."></textarea>
                 </div>
-                    <button class="ui green basic button">Submit</button>
+                <input type="submit" class="ui green basic button">
             </form>
-        </div>
+        </form>
     </div>
 </div>
 
