@@ -9,9 +9,16 @@ var topics = ["Technology", "Sports", "Music", "Gaming", "Entrepreneurship"];
 
 
 /* show all Blogs. */
-router.get('/', middleware.isLoggedIn ,function(req, res, next) {
-    console.log(req.user);
-    res.render("blogs/index", {topics:topics});
+router.get('/', middleware.isLoggedIn ,function(req, res) {
+    //get all blogs from DB
+    Blog.find({}, function(err, allBlogs){
+       if(err){
+           console.log(err);
+       }
+       else{
+           res.render("blogs/index", {blogs: allBlogs, topics: topics});
+       }
+    });
 });
 
 // new blog
