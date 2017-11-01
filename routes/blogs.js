@@ -10,11 +10,11 @@ var topics = ["Technology", "Sports", "Music", "Gaming", "Entrepreneurship"];
 
 router.get('/', function (req, res, next) {
     console.log(req.user);
-    res.render("/blogs/index", {topics:topics});
+    res.render("blogs/index", {topics:topics});
 });
 
 router.get("/new", function (req, res) {
-   res.render("/blogs/new");
+   res.render("blogs/new");
 });
 
 

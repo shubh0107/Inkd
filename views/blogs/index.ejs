@@ -16,7 +16,7 @@
                 <% topics.forEach(function (title) { %>
                 <a class="ui inverted green button"> <%= title%></a>
                 <% })%>
-                <% if(currentUser)%>
+                <% if(currentUser){%>
                 <div class="right menu">
                     <div class="item">
                         <a href="#" style="color: green">Signed In as <%= currentUser.username %></a>
