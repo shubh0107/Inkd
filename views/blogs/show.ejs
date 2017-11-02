@@ -1,0 +1,22 @@
+<% include ../partials/header %>
+
+
+<div class="ui container" style="margin-top: 2em;">
+    <div class="ui secondary pointing menu">
+        <a href="#" class="item"><h3><em>Posted by </em><%= blog.author.username%></h3></a>
+        <div class="right menu">
+            <h3 class="item"><%= blog.createdAt.toDateString() %></h3>
+        </div>
+    </div>
+
+    <img class="ui centered rounded image" src="<%= blog.image %>">
+    <h1 class="ui centered large header"><%= blog.title %></h1>
+
+    <div class="ui text container">
+        <p id="content"><%- blog.content.replace(/\n/g, '<br>')%></p>
+    </div>
+</div>
+
+
+
+<% include ../partials/footer %>

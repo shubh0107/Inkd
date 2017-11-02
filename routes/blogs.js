@@ -18,7 +18,7 @@ router.get('/', middleware.isLoggedIn ,function(req, res) {
        else{
            res.render("blogs/index", {blogs: allBlogs, topics: topics});
        }
-    });
+    }).sort({$natural: -1});
 });
 
 // new blog
@@ -48,5 +48,21 @@ router.post("/", middleware.isLoggedIn , function (req, res) {
        }
     });
 });
+
+
+// show blog route
+router.get("/:id", function (req, res) {
+    Blog.findById(req.params.id, function(err, foundBlog) {
+       if(err){
+           console.log(err);
+            res.redirect("/blogs");
+       }
+       else{
+           res.render("blogs/show", {blog: foundBlog});
+       }
+    });
+});
+
+
 
 module.exports = router;
