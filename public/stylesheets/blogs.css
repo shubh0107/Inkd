@@ -20,6 +20,9 @@
 .ui.secondary.inverted.pointing.menu a{
     margin-left: 10px;
 }
+.ui.card{
+    height: 200px;
+}
 .allTopicsContainer{
     margin-top: 5em;
     margin-left: auto;
@@ -44,6 +47,12 @@
     color: rgba(0,0,0,0.54);
     display: flex;
     margin-bottom: 10px;
+}
+.header.blog-title{
+    max-width: inherit;
+}
+.blog-description{
+    max-width: inherit;
 }
 .category-content a:hover{
     color: rgba(0,0,0,0.84);
