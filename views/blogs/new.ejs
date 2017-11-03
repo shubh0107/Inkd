@@ -17,6 +17,13 @@
                     <label>Content</label>
                     <textarea name="content" placeholder="Enter you content here..."></textarea>
                 </div>
+                <select class="ui dropdown" name = "category">
+                    <option value="">Category</option>
+                    <% category.forEach(function (category) { %>
+                        <option value= " <%=category.name%>" ><%=category.name%></option>
+                    <%})%>
+                </select>
+
                 <input type="submit" class="ui green basic button">
             </form>
         </form>

@@ -5,7 +5,8 @@
         <div class="categories">
             <div class="ui huge secondary inverted pointing menu">
                 <% topics.forEach(function (title) { %>
-                <a class="ui inverted green button"> <%= title%></a>
+                <% console.log(topics)%>
+                <a class="ui inverted green button"> <%= title.name%></a>
                 <% })%>
                 <% if(currentUser){%>
                 <div class="right menu">
@@ -28,7 +29,7 @@
 					<span class="borderBottom">
 						<h2 class="ui header"><a href="#"><%= topic%></a></h2>
 					</span>
-                <a class="category-more" href="#">
+                <a class="category-more" href="/blogs/category/<%= topic%>">
                     <span class="textUppercase">more</span>
                 </a>
             </div>
