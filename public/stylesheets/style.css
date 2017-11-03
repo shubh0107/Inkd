@@ -35,3 +35,9 @@
 #heading {
 
 }
+
+
+.ui.footer.segment {
+    margin: 5em 0 0;
+    padding: 5em 0;
+}

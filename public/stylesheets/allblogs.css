@@ -23,7 +23,7 @@
 .ui.card{
     height: 200px;
 }
-.allTopicsContainer{
+.allBlogsContainer{
     margin-top: 5em;
     margin-left: auto;
     margin-left: 5%;
@@ -64,6 +64,10 @@ a{
 .ui.three.column.grid.category-content{
     margin-top: 15px;
     margin-left: 10px;
+}
+
+.container{
+    margin-top: 2.5%;
 }
 body{
     background-color : #fff;

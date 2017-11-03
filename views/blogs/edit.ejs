@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="row">
-        <h1 style="text-align: center">Create a new blog</h1>
+        <h1 style="text-align: center">Edit a new blog</h1>
         <div style="width:30%; margin: 25px auto;">
             <form class="ui form" action="/blogs" method="POST">
                 <div class="field">
@@ -17,17 +17,10 @@
                     <label>Content</label>
                     <textarea name="content" placeholder="Enter you content here..."></textarea>
                 </div>
-                <select class="ui dropdown" name = "category">
-                    <option value="">Category</option>
-                    <% category.forEach(function (category) { %>
-                        <option value= " <%=category.name%>" ><%=category.name%></option>
-                    <%})%>
-                </select>
-
                 <input type="submit" class="ui green basic button">
             </form>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
 <% include ../partials/footer%>
