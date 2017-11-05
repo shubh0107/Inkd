@@ -17,11 +17,12 @@
                     <label>Content</label>
                     <textarea name="content" placeholder="Enter you content here..."></textarea>
                 </div>
-                <select class="ui dropdown" name = "category">
-                    <option value="">Category</option>
+                <select class="ui dropdown" name ="category">
+                    <optgroup label="Categories">
                     <% categories.forEach(function (category) { %>
-                        <option value= " <%=category.name%>" ><%=category.name%></option>
+                        <option value= "<%=category._id%>" ><%=category.name%></option>
                     <%})%>
+                    </optgroup>
                 </select>
 
                 <input type="submit" class="ui green basic button">
@@ -29,5 +30,10 @@
         </form>
     </div>
 </div>
+</div>
 
 <% include ../partials/footer%>
+
+
+
+

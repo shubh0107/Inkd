@@ -5,7 +5,6 @@
         <div class="categories">
             <div class="ui huge secondary inverted pointing menu">
                 <% topics.forEach(function (title) { %>
-                <% console.log(topics)%>
                 <a class="ui inverted green button"> <%= title.name%></a>
                 <% })%>
                 <% if(currentUser){%>
@@ -21,6 +20,8 @@
             </div>
         </div>
     </div>
+
+
 
     <% topics.forEach(function (topic) { %>
     <div class="allTopicsContainer">
@@ -59,6 +60,7 @@
         </div>
     </div>
 </div>
+
     <% })%>
 
 

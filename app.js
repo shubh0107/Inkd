@@ -100,13 +100,15 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+
+/*
+
 var category_technology = {name: "technology"};
 var category_gaming = {name: "gaming"};
 var category_sports = {name: "sports"};
 
 
 
-/*
 
 Category.create(category_technology, function (err, newBlog) {
    if(err){

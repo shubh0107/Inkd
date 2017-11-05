@@ -6,12 +6,14 @@ var blogSchema = new mongoose.Schema({
     content: String,
     image: String,
     createdAt: Date,
-    category : {
+    blogCategory : {
         id: {
             type : mongoose.Schema.Types.ObjectId,
             ref : "Category"
         }
-    },
+    }
+
+    ,
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
