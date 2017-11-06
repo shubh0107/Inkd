@@ -9,6 +9,8 @@ var passport = require("passport");
 var User = require("./models/user");
 var LocalStrategy = require("passport-local");
 
+var Category = require("./models/category");
+
 var app = express();
 
 var index = require('./routes/index');
@@ -97,6 +99,54 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+
+
+var category_technology = {name: "technology"};
+var category_gaming = {name: "gaming"};
+var category_sports = {name: "sports"};
+
+
+//
+//
+// Category.create(category_technology, function (err, newBlog) {
+//    if(err){
+//        console.log(err);
+//    }
+//    else{
+//        console.log(newBlog);
+//    }
+// });
+//
+//
+// Category.create(category_gaming, function (err, newBlog) {
+//     if(err){
+//         console.log(err);
+//     }
+//     else{
+//         console.log(newBlog);
+//     }
+// });
+//
+//
+// Category.create(category_sports, function (err, newBlog) {
+//     if(err){
+//         console.log(err);
+//     }
+//     else{
+//         console.log(newBlog);
+//     }
+// });
+//
+//
+// Category.find({}, function (err, allCategories) {
+//    if(err){
+//        console.log(err);
+//    }
+//    else{
+//        console.log(allCategories);
+//    }
+// });
 
 
 

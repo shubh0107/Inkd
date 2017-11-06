@@ -4,9 +4,12 @@ var Blog = require("../models/blog");
 var Category = require("../models/category");
 var middleware = require("../middleware");
 
-var topics = ["Technology", "Sports", "Music", "Gaming", "Entrepreneurship"];
+//var topics = ["Technology", "Sports", "Music", "Gaming", "Entrepreneurship"];
 
-var category;
+var blogCategory;
+
+
+
 /* show all Blogs with category. */
 router.get('/', middleware.isLoggedIn, function (req, res) {
     //get all blogs from DB
@@ -21,6 +24,8 @@ router.get('/', middleware.isLoggedIn, function (req, res) {
         }
 
     });
+
+
     Blog.find({}, function (err, allBlogs) {
         if (err) {
             console.log(err);
@@ -53,6 +58,7 @@ router.get("/new", middleware.isLoggedIn, function (req, res) {
         if (err) {
             console.log(err);
         } else {
+            console.log(category);
             res.render("blogs/new", {categories: category});
         }
     });
@@ -68,21 +74,27 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
     var author = {
         id: req.user._id,
         username: req.user.username
-    }
-    var category_name = req.body.category;
+    };
+    var category_id = req.body.category;
+    console.log("selected category's id:" + category_id);
 
     //find the id of the category selected by the user
 
-    Category.find({"name": category_name}, function (err, foundCategory) {
-        category = {
-            id: foundCategory._id
+    Category.findOne({'_id': category_id}, function (err, foundCategory) {
+        if(err){
+            console.log(err);
         }
+        else{
+        blogCategory = { id: category_id };
+        console.log("Blog Id found: " + foundCategory._id);
+        }
+
     });
 
     var newBlog = {
         title: title, content: content,
         image: image, createdAt: createdAt,
-        author: author, category: category
+        author: author, blogCategory: blogCategory
     };
 
     //create new blog and save to database

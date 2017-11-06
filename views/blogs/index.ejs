@@ -5,7 +5,6 @@
         <div class="categories">
             <div class="ui huge secondary inverted pointing menu">
                 <% topics.forEach(function (title) { %>
-                <% console.log(topics)%>
                 <a class="ui inverted green button"> <%= title.name%></a>
                 <% })%>
                 <% if(currentUser){%>
@@ -22,12 +21,14 @@
         </div>
     </div>
 
+
+
     <% topics.forEach(function (topic) { %>
     <div class="allTopicsContainer">
         <header class="category-title">
             <div class="category-content">
 					<span class="borderBottom">
-						<h2 class="ui header"><a href="#"><%= topic%></a></h2>
+						<h2 class="ui header"><a href="#"><%= topic.name.charAt(0).toUpperCase() + topic.name.slice(1) %></a></h2>
 					</span>
                 <a class="category-more" href="/blogs/category/<%= topic%>">
                     <span class="textUppercase">more</span>
@@ -39,10 +40,10 @@
             <div class="column category-blog">
                 <a class="ui card" href="/blogs/<%= blogs[i]._id %>">
                     <div class="content">
-                        <div class="header blog-title"><%= blogs[i].title %></div>
+                        <div class="header blog-title"><%= blogs[i].title.charAt(0).toUpperCase() + blogs[i].title.slice(1) %></div>
                         <div class="meta">
                             <span class="right floated time">2 days ago</span>
-                            <span class="category"><%= topic %></span>
+                            <span class="category"><%= topic.name.charAt(0).toUpperCase() + topic.name.slice(1) %></span>
                         </div>
                         <div class="blog-description">
                             <p><%= blogs[i].content.substr(0,150) %>...</p>
@@ -58,6 +59,8 @@
             <%}%>
         </div>
     </div>
+</div>
+
     <% })%>
 
 

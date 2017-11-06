@@ -1,12 +1,57 @@
-<% include partials/header %>
+<!--<% include partials/header %>-->
 
-<h1>Login</h1>
-<div class="container">
-        <form action="/login" method="POST">
-            <input type="text" name="username" placeholder="username">
-            <input type="password" name="password" placeholder="password">
-            <input type="submit" value="Login!">
+<!--<h1>Login</h1>-->
+<!--<div class="container">-->
+        <!--<form action="/login" method="POST">-->
+            <!--<input type="text" name="username" placeholder="username">-->
+            <!--<input type="password" name="password" placeholder="password">-->
+            <!--<input type="submit" value="Login!">-->
+        <!--</form>-->
+<!--</div>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inked</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css">
+    <link rel="stylesheet" href="../stylesheets/login.css">
+    <script type="text/javascript" src="../scripts/login.js" async></script>
+</head>
+<body>
+
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui image header">
+            <div class="content">
+                Log-in to your account
+            </div>
+        </h2>
+        <form action="/login" method="POST" class="ui large form">
+            <div class="ui stacked secondary  segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="username" placeholder="E-mail address">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="ui fluid large teal submit button">Login</div>
+            </div>
+
+            <div class="ui error message"></div>
+
         </form>
+
+        <div class="ui message">
+            New to us? <a href="/register">Register</a>
+        </div>
+    </div>
 </div>
 
 
