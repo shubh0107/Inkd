@@ -9,32 +9,31 @@ var middleware = require("../middleware");
 var blogCategory;
 
 
-
 /* show all Blogs with category. */
 router.get('/', middleware.isLoggedIn, function (req, res) {
     //get all blogs from DB
-    var categories ;
+    var categories;
     Category.find({}, function (err, list) {
-        if(err){
+        if (err) {
             console.log(err);
         }
-        else{
-            categories = list;
+        else {
+            res.render("blogs/index", {allBlogs: list});
             console.log(list);
         }
 
     });
 
 
-    Blog.find({}, function (err, allBlogs) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log(allBlogs);
-            res.render("blogs/index", {blogs: allBlogs, topics: categories});
-        }
-    });
+    // Blog.find({}, function (err, allBlogs) {
+    //     if (err) {
+    //         console.log(err);
+    //     }
+    //     else {
+    //         console.log(allBlogs);
+    //         // res.render("blogs/index", {blogs: allBlogs, topics: categories});
+    //     }
+    // });
 });
 
 /*show all Blogs for a category */
@@ -54,7 +53,7 @@ router.get("/category/:id", middleware.isLoggedIn, function (req, res) {
 
 // new blog
 router.get("/new", middleware.isLoggedIn, function (req, res) {
-    Category.find({}, function (err, category) {
+    Category.find({name}, {name: 1, _id: 0}, function (err, category) {
         if (err) {
             console.log(err);
         } else {
@@ -76,21 +75,10 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
         username: req.user.username
     };
     var category_id = req.body.category;
-    console.log("selected category's id:" + category_id);
+    console.log("selected category's id--------:" + category_id);
 
     //find the id of the category selected by the user
-
-    Category.findOne({'_id': category_id}, function (err, foundCategory) {
-        if(err){
-            console.log(err);
-        }
-        else{
-        blogCategory = { id: category_id };
-        console.log("Blog Id found: " + foundCategory._id);
-        }
-
-    });
-
+    blogCategory = {id: category_id};
     var newBlog = {
         title: title, content: content,
         image: image, createdAt: createdAt,

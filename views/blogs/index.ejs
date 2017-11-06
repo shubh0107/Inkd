@@ -25,13 +25,18 @@
 
 
     <div class="allTopicsContainer">
-        <% topics.forEach(function (topic) { %>
+        <% allBlogs.forEach(function (topic) { %>
         <header class="category-title">
             <div class="category-content">
 					<span class="borderBottom">
-						<h2 class="ui header"><a href="#"><%= topic.name.charAt(0).toUpperCase() + topic.name.slice(1) %></a></h2>
+						<h2 class="ui header">
+                            <a href="#">
+                                <%= topic.name.charAt(0).toUpperCase() +
+                                topic.name.slice(1) %>
+                            </a>
+                        </h2>
 					</span>
-                <a class="category-more" href="/blogs/category/<%= topic%>">
+                <a class="category-more" href="/blogs/category/<%= topic.name%>">
                     <span class="textUppercase">more</span>
                 </a>
             </div>
