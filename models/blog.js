@@ -6,12 +6,15 @@ var blogSchema = new mongoose.Schema({
     content: String,
     image: String,
     createdAt: Date,
+<<<<<<< HEAD
     blogCategory : {
         id: {
             type : mongoose.Schema.Types.ObjectId,
             ref : "Category"
         }
     },
+=======
+>>>>>>> origin/master
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
