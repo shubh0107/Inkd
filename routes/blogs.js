@@ -4,36 +4,22 @@ var Blog = require("../models/blog");
 var Category = require("../models/category");
 var middleware = require("../middleware");
 
-//var topics = ["Technology", "Sports", "Music", "Gaming", "Entrepreneurship"];
-
-var blogCategory;
 
 
 /* show all Blogs with category. */
 router.get('/', middleware.isLoggedIn, function (req, res) {
     //get all blogs from DB
-    var categories;
-    Category.find({}, function (err, list) {
+
+    Category.find({}).populate("blogs").exec(function (err, list) {
         if (err) {
             console.log(err);
+        } else {
+            res.render("blogs/index", {allCategories: list});
+            console.log("LIST---" + list);
         }
-        else {
-            res.render("blogs/index", {allBlogs: list});
-            console.log(list);
-        }
-
     });
 
 
-    // Blog.find({}, function (err, allBlogs) {
-    //     if (err) {
-    //         console.log(err);
-    //     }
-    //     else {
-    //         console.log(allBlogs);
-    //         // res.render("blogs/index", {blogs: allBlogs, topics: categories});
-    //     }
-    // });
 });
 
 /*show all Blogs for a category */
@@ -53,7 +39,9 @@ router.get("/category/:id", middleware.isLoggedIn, function (req, res) {
 
 // new blog
 router.get("/new", middleware.isLoggedIn, function (req, res) {
-    Category.find({name}, {name: 1, _id: 0}, function (err, category) {
+
+
+    Category.find({}, {"name": 1, "_id": 1}, function (err, category) {
         if (err) {
             console.log(err);
         } else {
@@ -74,24 +62,27 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
         id: req.user._id,
         username: req.user.username
     };
-    var category_id = req.body.category;
-    console.log("selected category's id--------:" + category_id);
-
-    //find the id of the category selected by the user
-    blogCategory = {id: category_id};
     var newBlog = {
         title: title, content: content,
         image: image, createdAt: createdAt,
-        author: author, blogCategory: blogCategory
+        author: author
     };
-
-    //create new blog and save to database
     Blog.create(newBlog, function (err, newlyCreatedBlog) {
         if (err) {
             console.log(err);
         }
         else {
-            console.log(newlyCreatedBlog);
+            console.log("new blog :- ----",newlyCreatedBlog);
+            Category.findById(req.body.category, function (err, foundCategory) {
+                if (err) {
+                    console.log("error: ", err);
+                } else {
+                    console.log("id:--------", newlyCreatedBlog._id);
+                    foundCategory.blogs.push(newlyCreatedBlog._id);
+                    foundCategory.save();
+                    console.log("found----", foundCategory);
+                }
+            });
             res.redirect("/blogs");
         }
     });
