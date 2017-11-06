@@ -3,6 +3,7 @@ var router = express.Router();
 var Blog = require("../models/blog");
 var Category = require("../models/category");
 var middleware = require("../middleware");
+var moment = require("moment");
 
 //var topics = ["Technology", "Sports", "Music", "Gaming", "Entrepreneurship"];
 
@@ -10,7 +11,7 @@ var blogCategory;
 
 
 
-/* show all Blogs with category. */
+/* show all Blogs with category --  **INDEX PAGE** */
 router.get('/', middleware.isLoggedIn, function (req, res) {
     //get all blogs from DB
     var categories ;
@@ -80,7 +81,7 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
 
     //find the id of the category selected by the user
 
-    Category.findOne({'_id': category_id}, function (err, foundCategory) {
+    Category.find({'_id': category_id}, function (err, foundCategory) {
         if(err){
             console.log(err);
         }
@@ -97,6 +98,8 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
         author: author, blogCategory: blogCategory
     };
 
+    console.log(blogCategory);
+
     //create new blog and save to database
     Blog.create(newBlog, function (err, newlyCreatedBlog) {
         if (err) {
@@ -112,12 +115,13 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
 
 // show blog route
 router.get("/:id", function (req, res) {
-    Blog.findById(req.params.id, function (err, foundBlog) {
+    Blog.findById(req.params.id).populate("comments").exec(function (err, foundBlog) {
         if (err) {
             console.log(err);
             res.redirect("/blogs");
         }
         else {
+            console.log(foundBlog);
             res.render("blogs/show", {blog: foundBlog});
         }
     });

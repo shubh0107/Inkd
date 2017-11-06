@@ -1,3 +1,4 @@
+
 <% include ../partials/header %>
 
 
@@ -15,8 +16,57 @@
     <div class="ui text container">
         <p id="content"><%- blog.content.replace(/\n/g, '<br>')%></p>
     </div>
-</div>
 
+
+    <h3 class="ui dividing header">Comments</h3>
+
+    <div class="ui threaded comments container" style="padding: 15px">
+
+        <% blog.comments.forEach(function(comment){ %>
+        <div class="comment">
+            <a class="avatar">
+                <img src="../matt.jpg">
+            </a>
+            <div class="content">
+                <a class="author"><%= comment.author.username %></a>
+                <div class="metadata">
+                    <span class="date"><%= comment.createdAt.toDateString() %></span>
+                </div>
+                <div class="text"><%= comment.text %></div>
+                <div class="actions">
+                    <a class="reply" id="reply" href="#">Reply</a>
+                </div>
+            </div>
+            <form action="/commentReply/<%= comment._id %>/newComment" method="post" class="ui reply form">
+                <div class="field">
+                    <textarea name="replyText" placeholder="Enter your reply..."></textarea>
+                </div>
+                <input type="submit" class="ui green labled submit icon button" value="Post reply">
+            </form>
+        </div>
+        <% }) %>
+
+
+        <form action="/blogs/<%= blog.id %>/newComment" method="post" class="ui reply form">
+            <div class="field">
+                <textarea name="commentText" placeholder="Enter your comment..."></textarea>
+            </div>
+            <input type="submit" class="ui green labled submit icon button" value="Post Comment">
+                <i class="icon edit"></i>
+            </input>
+        </form>
+    </div>
+
+
+
+</div> <!-- Main container -->
+
+
+<script>
+    $("#reply").on("click", function(e) {
+        e.preventDefault();
+    });
+</script>
 
 
 <% include ../partials/footer %>

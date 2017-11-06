@@ -18,11 +18,10 @@
                     <textarea name="content" placeholder="Enter you content here..."></textarea>
                 </div>
                 <select class="ui dropdown" name ="category">
-                    <optgroup label="Categories">
+                    <option value="Categories" selected disabled>Categories</option>
                     <% categories.forEach(function (category) { %>
-                        <option value= "<%=category._id%>" ><%=category.name%></option>
-                    <%})%>
-                    </optgroup>
+                        <option value="<%= category._id %>"><%= category.name %></option>
+                    <% }) %>
                 </select>
 
                 <input type="submit" class="ui green basic button">

@@ -16,13 +16,13 @@ var app = express();
 var index = require('./routes/index');
 var users = require('./routes/users');
 var blogs = require('./routes/blogs');
+var comments = require('./routes/comments');
 
 
 
 
 
 //connect to mongoose
-
 mongoose.connect('mongodb://localhost/inkd',{
     useMongoClient:true
 },function (err, db) {
@@ -76,6 +76,8 @@ app.use(function(req, res, next){
 app.use('/', index);
 app.use('/users', users);
 app.use('/blogs', blogs);
+app.use('/blogs/:id', comments);
+
 
 
 
