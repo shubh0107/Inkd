@@ -26,6 +26,7 @@ router.get('/', middleware.isLoggedIn, function (req, res) {
             console.log(err);
         }
         else {
+            console.log(allBlogs);
             res.render("blogs/index", {blogs: allBlogs, topics: categories});
         }
     });
@@ -34,7 +35,7 @@ router.get('/', middleware.isLoggedIn, function (req, res) {
 /*show all Blogs for a category */
 router.get("/category/:id", middleware.isLoggedIn, function (req, res) {
     var query = {"category.id": "ObjectId(" + req.params.id + ")"};
-    Blog.find({query}, function (err, allBlogs) {
+    Blog.find(query, function (err, allBlogs) {
         if (err) {
             console.log(err);
         } else {
@@ -72,7 +73,7 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
 
     //find the id of the category selected by the user
 
-    Category.find({"category": category_name}, function (err, foundCategory) {
+    Category.find({"name": category_name}, function (err, foundCategory) {
         category = {
             id: foundCategory._id
         }
