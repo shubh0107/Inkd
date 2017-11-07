@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <head>
+        <title>Inked</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css">
+        <link rel="stylesheet" href="../stylesheets/category-blogs.css">
+    </head>
+</head>
+<body>
+<div class="container">
+
+    <div class="allBlogsContainer">
+        <header class="category-title">
+            <div class="category-content">
+            <span class="borderBottom">
+                <h2 class="ui header">
+                    <a href="#">
+                        <%= allCategories.name.charAt(0).toUpperCase() +
+                        allCategories.name.slice(1) %>
+                    </a>
+                </h2>
+            </span>
+            </div>
+        </header>
+        <div class="ui three column grid category-content">
+            <% for(var i = 0; i < 3 ; i++){ %>
+            <% if(allCategories.blogs.length != 0 && allCategories.blogs[i]) { %>
+
+            <div class="column category-blog">
+                <a class="ui card" href="/blogs/<%= allCategories.blogs[i]._id %>">
+                    <div class="content">
+                        <div class="header blog-title">
+                            <%= allCategories.blogs[i].title.charAt(0).toUpperCase() +
+                            allCategories.blogs[i].title.slice(1) %>
+                        </div>
+                        <div class="meta">
+                            <span class="right floated time">2 days ago</span>
+                            <span class="category">
+                                    <%= allCategories.name.charAt(0).toUpperCase()
+                                    + allCategories.name.slice(1) %>
+                            </span>
+                        </div>
+                        <div class="blog-description">
+                            <p>
+                                <%= allCategories.blogs[i].content.substr(0, 150) %>...
+                            </p>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <div class="right floated author">
+                            <img class="ui avatar image" src="../Assets/if_9_2694135.svg"> Matt
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <% } else { %>
+            <div class="column category-blog">
+                <a class="ui card" href="/blogs/new">
+                    <div class="content">
+                        <i class="add large circle icon"></i>
+                    </div>
+                </a>
+            </div>
+            <% } %>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

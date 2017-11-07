@@ -6,7 +6,6 @@ var middleware = require("../middleware");
 var moment = require("moment");
 
 
-
 /* show all Blogs with category --  **INDEX PAGE** */
 router.get('/', middleware.isLoggedIn, function (req, res) {
     //get all blogs from DB
@@ -16,7 +15,6 @@ router.get('/', middleware.isLoggedIn, function (req, res) {
             console.log(err);
         } else {
             res.render("blogs/index", {allCategories: list});
-            console.log("LIST---" + list);
         }
     });
 
@@ -24,13 +22,15 @@ router.get('/', middleware.isLoggedIn, function (req, res) {
 });
 
 /*show all Blogs for a category */
-router.get("/category/:id", middleware.isLoggedIn, function (req, res) {
-    var query = {"category.id": "ObjectId(" + req.params.id + ")"};
-    Blog.find(query, function (err, allBlogs) {
+router.get("/category/:name", middleware.isLoggedIn, function (req, res) {
+    var query = {"name": req.params.name};
+
+    Category.find({query}).populate("blogs").exec(function (err, list) {
         if (err) {
             console.log(err);
         } else {
-            res.render("blogs/allblogs", {blogs: allBlogs});
+
+            res.render("blogs/category-blogs", {allCategories: list[0]});
         }
     });
 
@@ -75,7 +75,7 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
             console.log(err);
         }
         else {
-            console.log("new blog :- ----",newlyCreatedBlog);
+            console.log("new blog :- ----", newlyCreatedBlog);
             Category.findById(req.body.category, function (err, foundCategory) {
                 if (err) {
                     console.log("error: ", err);
