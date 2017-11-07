@@ -1,25 +1,4 @@
 
-.categories{
-    color: white;
-    margin-top: 1.5em;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-.ui.inverted.green.button{
-    color: #03a87c;
-    box-shadow: 0 0 0 2px #03a87c inset!important;
-}
-.ui.inverted.green.button:hover{
-    background-color: #03a87c;
-}
-
-
-.ui.secondary.inverted.pointing.menu{
-    border-color: rgba(0,0,0,0);
-}
-.ui.secondary.inverted.pointing.menu a{
-    margin-left: 10px;
-}
 .ui.card{
     height: 200px;
 }
@@ -31,6 +10,7 @@
 }
 .category-title{
     padding-bottom: 20px;
+    margin-top: 20px;
     border-bottom: 1px solid;
     border-bottom-color: rgba(0,0,0,0.15);
 }
@@ -39,9 +19,6 @@
     border-bottom: 2px solid;
     border-bottom-color: rgba(0,0,0,0.74);
     padding-bottom: 20px;
-}
-a{
-    color: black;
 }
 .category-more{
     float: right;
@@ -64,10 +41,6 @@ a{
 .ui.three.column.grid.category-content{
     margin-top: 15px;
     margin-left: 10px;
-}
-
-.container{
-    margin-top: 2.5%;
 }
 body{
     background-color : #fff;

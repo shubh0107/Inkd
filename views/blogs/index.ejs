@@ -1,19 +1,28 @@
 <% include ../partials/header %>
 
-<div class="container">
+<div class="container background">
     <div class="topbar">
         <div class="categories">
-            <div class="ui huge secondary inverted pointing menu">
+            <div class="ui fixed inverted menu">
+                <span class="left-spacing">
+
+                </span>
                 <% allCategories.forEach(function (title) { %>
-                <a class="ui inverted green button"> <%= title.name %></a>
+                <a class="ui inverted item" href="/blogs/category/<%= title.name%>">
+                    <%= title.name.charAt(0).toUpperCase() +
+                    title.name.slice(1) %></a>
                 <% }) %>
                 <% if(currentUser){ %>
-                <div class="right menu">
-                    <div class="item">
-                        <a href="#" style="color: green">Signed In as <%= currentUser.username %></a>
-                    </div>
-                    <div class="item">
-                        <a class="ui green button" href="/logout">Logout</a>
+                <div class="ui simple right dropdown item">
+                    <%= currentUser.username.charAt(0).toUpperCase()+
+                        currentUser.username.slice(1)%>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item">My Profile</div>
+                        <div class="item ">
+                            <a style="color: black" href="/logout">Logout</a>
+                        </div>
+
                     </div>
                 </div>
                 <% } %>
@@ -40,9 +49,9 @@
             </div>
         </header>
         <div class="ui three column grid category-content">
-            <% console.log("len:", category.blogs.length) %>
+
             <% for(var i = 0; i < 3 ; i++){ %>
-            <% if(category.blogs.length <= 3) { %>
+            <% if(category.blogs.length != 0 && category.blogs[i]) { %>
 
             <div class="column category-blog">
                 <a class="ui card" href="/blogs/<%= category.blogs[i]._id %>">
@@ -73,9 +82,13 @@
             </div>
             <% } else { %>
             <div class="column category-blog">
-                <a class="ui card" href="/blogs/new">
-                    <div class="content">
-                        <i class="add large circle icon"></i>
+                <a class="ui card " href="/blogs/new">
+                    <div class="content ">
+                        <div class="blog-description">
+                            <p>
+                                It looks empty here. Click to add a new post.
+                            </p>
+                        </div>
                     </div>
                 </a>
             </div>
