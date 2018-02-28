@@ -17,6 +17,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var blogs = require('./routes/blogs');
 var comments = require('./routes/comments');
+var categories = require('./routes/categories');
 
 
 
@@ -77,6 +78,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/blogs', blogs);
 app.use('/blogs/:id', comments);
+app.use('/category', categories);
 
 
 

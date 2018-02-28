@@ -1,8 +1,9 @@
 
 <% include ../partials/header %>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <div class="ui container" style="margin-top: 2em;">
+
     <div class="ui secondary pointing menu">
         <a href="#" class="item"><h3><em>Posted by </em><%= blog.author.username%></h3></a>
         <div class="right menu">
@@ -11,6 +12,7 @@
     </div>
 
     <img class="ui centered rounded image" src="<%= blog.image %>">
+
     <h1 class="ui centered large header"><%= blog.title %></h1>
 
     <div class="ui text container">
@@ -23,10 +25,13 @@
     <div class="ui threaded comments container" style="padding: 15px">
 
         <% blog.comments.forEach(function(comment){ %>
+
         <div class="comment">
+
             <a class="avatar">
                 <img src="../matt.jpg">
             </a>
+
             <div class="content">
                 <a class="author"><%= comment.author.username %></a>
                 <div class="metadata">
@@ -34,37 +39,73 @@
                 </div>
                 <div class="text"><%= comment.text %></div>
                 <div class="actions">
-                    <a class="reply" id="reply" href="#">Reply</a>
+                    <a class="reply" id="reply" href="">Reply</a>
                 </div>
             </div>
-            <form action="/commentReply/<%= comment._id %>/newComment" method="post" class="ui reply form">
-                <div class="field">
-                    <textarea name="replyText" placeholder="Enter your reply..."></textarea>
+
+            <!--<div class="slidingDiv">
+                <form action="/commentReply/<!%= comment._id %! >/newComment" method="post" class="ui reply form">
+                    <div class="field">
+                        <textarea name="replyText" placeholder="Enter your reply..."></textarea>
+                    </div>
+                    <input type="submit" class="ui green labled submit icon button" value="Post reply">
+                </form>
+            </div>-->
+
+            <div class="comments">
+                <% comment.replies.forEach(function(eachReply){ %>
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="../matt.jpg">
+                    </a>
+                    <div class="content">
+                        <a class="author"><%= eachReply.author.username %></a>
+                        <div class="metadata">
+                            <span class="date"><%= eachReply.createdAt.toDateString() %></span>
+                        </div>
+                        <div class="text"><%= eachReply.text %></div>
+                        <div class="actions">
+                            <a class="reply" href="">Reply</a>
+                        </div>
+                    </div>
+                    <div class="slidingDiv">
+                        <form action="/commentReply/<%= comment._id %>/newComment" method="post" class="ui reply form">
+                            <div class="field">
+                                <textarea name="replyText" placeholder="Enter your reply..."></textarea>
+                            </div>
+                            <input type="submit" class="ui green labled submit icon button" value="Post reply">
+                        </form>
+                    </div>
                 </div>
-                <input type="submit" class="ui green labled submit icon button" value="Post reply">
+                <% }) %>
+            </div>
+            <% }) %>
+
+
+            <form action="/blogs/<%= blog.id %>/newComment" method="post" class="ui reply form">
+                <div class="field">
+                    <textarea name="commentText" placeholder="Enter your comment..."></textarea>
+                </div>
+                <input type="submit" class="ui green labled submit icon button" value="Post Comment">
+                <i class="icon edit"></i>
+                </input>
             </form>
         </div>
-        <% }) %>
-
-
-        <form action="/blogs/<%= blog.id %>/newComment" method="post" class="ui reply form">
-            <div class="field">
-                <textarea name="commentText" placeholder="Enter your comment..."></textarea>
-            </div>
-            <input type="submit" class="ui green labled submit icon button" value="Post Comment">
-                <i class="icon edit"></i>
-            </input>
-        </form>
     </div>
-
-
 
 </div> <!-- Main container -->
 
 
-<script>
-    $("#reply").on("click", function(e) {
-        e.preventDefault();
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $(".slidingDiv").hide();
+        $("#reply").show();
+
+        $('#reply').click(function(){
+            $(".slidingDiv").slideToggle();
+        });
+
     });
 </script>
 

@@ -56,5 +56,9 @@ router.post("/newComment", middleware.isLoggedIn, function (req, res) {
 });
 
 
+router.post("/")
+
+
+
 module.exports = router;
 

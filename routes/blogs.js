@@ -9,7 +9,6 @@ var moment = require("moment");
 /* show all Blogs with category --  **INDEX PAGE** */
 router.get('/', middleware.isLoggedIn, function (req, res) {
     //get all blogs from DB
-
     Category.find({}).populate("blogs").exec(function (err, list) {
         if (err) {
             console.log(err);
@@ -20,23 +19,6 @@ router.get('/', middleware.isLoggedIn, function (req, res) {
 
 
 });
-
-/*show all Blogs for a category */
-router.get("/category/:name", middleware.isLoggedIn, function (req, res) {
-    var query = {"name": req.params.name};
-
-    Category.find({query}).populate("blogs").exec(function (err, list) {
-        if (err) {
-            console.log(err);
-        } else {
-
-            res.render("blogs/category-blogs", {allCategories: list[0]});
-        }
-    });
-
-
-});
-
 
 // new blog
 router.get("/new", middleware.isLoggedIn, function (req, res) {
